@@ -1,0 +1,51 @@
+{
+    "name": "style-logs",
+    "version": "0.0.1",
+    "description": "Design your console/terminal in HTML style.",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "fonts"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "build:watch": "tsup --watch",
+        "deploy": "npm publish",
+        "deploy:beta": "npm publish --tag beta",
+        "test:m": "cd tests && node index.mjs",
+        "test:c": "cd tests && node index.js"
+    },
+    "keywords": [
+        "style-logs",
+        "stylelogs",
+        "console",
+        "style console"
+    ],
+    "author": "flameface",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/common-tags": "^1.8.4",
+        "@types/node": "^20.12.7",
+        "tsup": "^8.0.2",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "common-tags": "^1.8.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/unburn/style-logs.git"
+    },
+    "bugs": {
+        "url": "https://github.com/unburn/style-logs/issues"
+    }
+}
