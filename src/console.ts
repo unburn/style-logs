@@ -13,7 +13,7 @@ interface StyleCodes {
     };
 }
 
-const style: StyleCodes = {
+const logs: StyleCodes = {
     reset: "\x1b[0m",
     styles: {
         bold: "\x1b[1m",
@@ -48,7 +48,7 @@ const style: StyleCodes = {
     }
 };
 
-export const log = (text: string): void => {
+export function style(text: string): string {
     const regex = /<text\s*(.*?)>(.*?)<\/text>/gs;
     let result = '';
 
@@ -59,28 +59,28 @@ export const log = (text: string): void => {
         while ((match = regex.exec(line)) !== null) {
             const attributes = match[1].trim();
             const content = match[2];
-            let colorCode = style.reset;
+            let colorCode = logs.reset;
 
             if (attributes) {
                 const attributeRegex = /(f|b|s)-(\w+)/g;
                 let attrMatch;
                 while ((attrMatch = attributeRegex.exec(attributes)) !== null) {
                     const [, type, styleName] = attrMatch;
-                    if (type === 'f' && style.fg[styleName]) {
-                        colorCode += style.fg[styleName];
-                    } else if (type === 'b' && style.bg[styleName]) {
-                        colorCode += style.bg[styleName];
-                    } else if (type === 's' && style.styles[styleName]) {
-                        colorCode += style.styles[styleName];
+                    if (type === 'f' && logs.fg[styleName]) {
+                        colorCode += logs.fg[styleName];
+                    } else if (type === 'b' && logs.bg[styleName]) {
+                        colorCode += logs.bg[styleName];
+                    } else if (type === 's' && logs.styles[styleName]) {
+                        colorCode += logs.styles[styleName];
                     }
                 }
             }
 
-            processedLine = processedLine.replace(match[0], `${colorCode}${content}${style.reset}`);
+            processedLine = processedLine.replace(match[0], `${colorCode}${content}${logs.reset}`);
         }
 
         result += processedLine + '\n';
     });
 
-    console.log(result.trim());
+    return result.trim()
 };

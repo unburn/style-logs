@@ -1,6 +1,6 @@
 {
     "name": "style-logs",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Design your console/terminal in HTML style.",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
